@@ -241,6 +241,7 @@ offset = Vector2(0, -6)
 flip_h = true
 
 [node name="DetecetionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -248,6 +249,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_ukkjk")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 position = Vector2(3.72529e-09, -7)

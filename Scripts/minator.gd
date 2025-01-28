@@ -16,15 +16,22 @@ var taunting = false
 
 var anger = 60
 
+func minator():
+	pass
 
 func _process(delta: float) -> void:
+	if Global.PlayerMeeleAttackedMinator:
+		animated_sprite.play("hurt")
+		
 	if taunting:
 		attacking = false
 		animated_sprite.play("taunt")
 		Global.MinatorTaunted = true
-	elif !attacking:
+		return
+	if !attacking:
 		if playerInAttackRange:
-				enemyAttack()
+			enemyAttack()
+			return
 		elif playerChase:
 			var direction = (player.position - position).normalized() 
 			position += direction * speed * delta
@@ -35,8 +42,7 @@ func _process(delta: float) -> void:
 				animated_sprite.flip_h = true
 		else:
 			animated_sprite.play("idle")
-	
-			
+
 func enemyAttack():
 	var attackType = (randi() % 2)+1
 	if attackCooldown == false:
@@ -89,7 +95,13 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 				taunting = false
 				animated_sprite.stop()
 				Global.MinatorTaunted = false
-				
+		"hurt":
+			if animated_sprite.frame == animated_sprite.sprite_frames.get_frame_count("hurt") - 1:
+				Global.PlayerMeeleAttackedMinator = false
+				animated_sprite.stop()
+				attacking = false
+				taunting = false
+
 func _on_detecetion_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player = body
@@ -99,13 +111,13 @@ func _on_detecetion_area_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player = null
 		playerChase = false
-	
+
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		playerInAttackRange = true
 
 func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	playerInAttackRange = false
-				
+
 func _on_attack_cooldown_timeout() -> void:
 	attackCooldown = false

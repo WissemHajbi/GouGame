@@ -5,6 +5,9 @@ var MinatorAttacked1Player = false
 var MinatorAttacked2Player = false
 var MinatorTaunted = false
 
+var PlayerMeeleAttackedMinator = false
+var PlayerMeeleAttackedOrc = false
+
 var SpawnOrcs = false
 var NumOrcsToSpawn = 1
 var NumOrcSpawned = 0

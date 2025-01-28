@@ -1,11 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://cuorvebfgho6k"]
+[gd_scene load_steps=44 format=3 uid="uid://cuorvebfgho6k"]
 
 [ext_resource type="Texture2D" uid="uid://b7i5qgcjxpc6u" path="res://Assets/Characters(100x100)/Minator/Minotaur - Sprite Sheet.png" id="1_4arkc"]
 [ext_resource type="Script" path="res://Scripts/minator.gd" id="1_ta84f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b7hlj"]
-radius = 16.0
-height = 52.0
+radius = 23.0
+height = 66.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1164e"]
 atlas = ExtResource("1_4arkc")
@@ -66,6 +66,18 @@ region = Rect2(672, 576, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl452"]
 atlas = ExtResource("1_4arkc")
 region = Rect2(768, 576, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2e2s"]
+atlas = ExtResource("1_4arkc")
+region = Rect2(0, 768, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrx25"]
+atlas = ExtResource("1_4arkc")
+region = Rect2(96, 768, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0di6n"]
+atlas = ExtResource("1_4arkc")
+region = Rect2(192, 768, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvxmv"]
 atlas = ExtResource("1_4arkc")
@@ -205,6 +217,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_c2e2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrx25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0di6n")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kvxmv")
 }, {
 "duration": 1.0,
@@ -324,10 +350,11 @@ position = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wgpge")
 animation = &"taunt"
 autoplay = "idle"
-frame_progress = 0.347719
+frame_progress = 0.649269
 flip_h = true
 
 [node name="DetecetionArea" type="Area2D" parent="."]
+visible = false
 rotation = -0.00247352
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetecetionArea"]
@@ -337,11 +364,12 @@ shape = SubResource("CircleShape2D_odj70")
 wait_time = 2.0
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
+visible = false
 rotation = 0.0235405
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-position = Vector2(-0.0706149, -2.99917)
-rotation = -1.58161
+position = Vector2(-0.0235383, -0.999723)
+rotation = -1.58997
 shape = SubResource("CapsuleShape2D_pvb18")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
